@@ -376,15 +376,17 @@ component accessors="true" {
 
 		// process interception
 		if ( getEventHandling() ) {
-			getORMEventHandler().getEventManager().processState(
-				"beforeOrmExecuteQuery",
-				{
-					"query" : arguments.query,
-					"params" : arguments.params,
-					"unique" : arguments.unique,
-					"options" : options
-				}
-			);
+			getORMEventHandler()
+				.getEventManager()
+				.processState(
+					"beforeOrmExecuteQuery",
+					{
+						"query"   : arguments.query,
+						"params"  : arguments.params,
+						"unique"  : arguments.unique,
+						"options" : options
+					}
+				);
 		}
 
 		// Get listing: https://cfdocs.org/ormexecutequery
@@ -397,21 +399,22 @@ component accessors="true" {
 
 		// process interception
 		if ( getEventHandling() ) {
-			getORMEventHandler().getEventManager().processState(
-				"afterOrmExecuteQuery",
-				{
-					"query" : arguments.query,
-					"params" : arguments.params,
-					"unique" : arguments.unique,
-					"options" : options,
-					"results" : isNull( results ) ? javacast( "null", "" ) : results
-				}
-			);
+			getORMEventHandler()
+				.getEventManager()
+				.processState(
+					"afterOrmExecuteQuery",
+					{
+						"query"   : arguments.query,
+						"params"  : arguments.params,
+						"unique"  : arguments.unique,
+						"options" : options,
+						"results" : isNull( results ) ? javacast( "null", "" ) : results
+					}
+				);
 		}
 
 		// Null Checks
 		if ( isNull( results ) ) {
-
 			if ( arguments.asStream ) {
 				return variables.wirebox.getInstance( "StreamBuilder@cbStreams" ).new();
 			} else if ( arguments.asQuery ) {

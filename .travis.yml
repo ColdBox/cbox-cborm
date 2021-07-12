@@ -42,7 +42,7 @@ before_script:
   # create database
   - mysql -u root -e 'create database coolblog;'
   # import database
-  - mysql -u root < $TRAVIS_BUILD_DIR/test-harness/tests/resources/coolblog.sql
+  - mysql -u root < $TRAVIS_BUILD_DIR/test-harness/tests/resources/db/coolblog.sql
   - echo "Database created and loaded with test data"
   # Seed .env
   - echo "Seeding database .env file at /test-harness/.env"

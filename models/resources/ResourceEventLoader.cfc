@@ -64,9 +64,7 @@ component singleton {
 	 * Get the entity map according to engine
 	 */
 	private function getEntityMap(){
-		if (
-			listFirst( server.coldfusion.productVersion ) >= 2018
-		) {
+		if ( listFirst( server.coldfusion.productVersion ) >= 2018 ) {
 			return arrayToList( ormGetSessionFactory().getMetaModel().getAllEntityNames() ).listToArray();
 		} else {
 			return structKeyArray( ormGetSessionFactory().getAllClassMetadata() );
